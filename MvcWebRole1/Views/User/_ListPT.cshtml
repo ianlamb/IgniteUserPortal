@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Ignite.Models.UserViewModel>
+
+<ul class="cool-list" id="pt-list">
+    <h3>Available Personal Trainers</h3>
+    @if(Model.Count() > 0) {
+        foreach (var pt in Model) {
+            <li id="@pt.User.UserName" class="green">
+                <img src="../../Content/uploads/@(pt.Profile != null && pt.Profile.ProfileImage != "" ? 
+                                        pt.Profile.ProfileImage : 
+                                        "../images/default-profile-image.jpg")" alt="user thumbnail" />
+                <div>
+                    <span>@pt.User.UserName</span>
+                </div>
+            </li>
+        }
+    }
+    else
+    {
+        <li>
+            <span style="position:relative; top:6px; left:6px;">No results.</span>
+        </li>
+    }
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('ul#pt-list li').click(function () {
+            assignPT($(this).attr('id'));
+        });
+    });
+</script>

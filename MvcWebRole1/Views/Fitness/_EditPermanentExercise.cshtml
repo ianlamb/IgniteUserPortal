@@ -1,0 +1,97 @@
+﻿@model Ignite.Models.ExerciseListViewModel
+
+@using (Html.BeginForm("EditPermanentExercise", "Fitness", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.ExerciseId)
+    
+    <div class="eight columns end">
+        <fieldset>
+            <legend>Edit Workout</legend>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Name) 
+                </div>
+                <div class="six columns end">
+                    @Html.TextBoxFor(m => m.Name) 
+                    @Html.ValidationMessageFor(m => m.Name) 
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.MuscleGroup) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.MuscleGroup, (SelectList)ViewBag.MuscleGroupOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Equipment) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Equipment, (SelectList)ViewBag.EquipmentOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Level) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Level, (SelectList)ViewBag.LevelOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Force) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Force, (SelectList)ViewBag.ForceOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Mechanics) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Mechanics, (SelectList)ViewBag.MechanicsOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    <label for="ThumbnailFile">Thumbnail</label>
+                </div>
+                <div class="six columns">
+                    <img src="@(Model.Thumbnail != null && Model.Thumbnail != "" ? 
+                                    Model.Thumbnail : 
+                                    "../../Content/images/default-profile-image.jpg")" alt="workout thumbnail" />
+                    <input type="file" name="ThumbnailFile" id="ThumbnailFile" />
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.VideoURL)
+                </div>
+                <div class="six columns">
+                    @Html.TextBoxFor(m => m.VideoURL) 
+                    @Html.ValidationMessageFor(m => m.VideoURL) 
+                </div>
+            </div>
+                
+            <center>
+                <p>
+                    <input type="submit" value="Save" class="small success button" />
+		            @* <input type="button" value="Delete" class="small alert button" /> *@
+                </p>
+            </center>
+        </fieldset>
+    </div>
+}

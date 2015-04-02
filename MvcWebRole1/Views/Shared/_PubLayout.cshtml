@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/jquery-ui.css",
+                   "~/Content/foundation.css",
+                   "~/Content/fonts/foundation_icons_general/stylesheets/general_foundicons.css",
+                   "~/Content/fonts/foundation_icons_accessibility/stylesheets/accessibility_foundicons.css",
+                   "~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery",
+                    "~/Scripts/foundation.min.js",
+                    "~/Scripts/jquery-ui.js",
+                    "~/Scripts/app.js",
+                    "~/Scripts/overthrow.js",
+                    "~/Scripts/ignite.js")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div id="content" class="container">
+        <div id="header">
+        </div>
+        
+        <div id="main" class="row">
+            <div class="twelve columns">
+                @RenderBody()
+            </div>
+        </div>
+            
+        <div id="footer">
+            <div class="row">
+                <div class="six columns left">
+                    2012 &copy; Igniteck Inc. All Rights Reserved.
+                </div>
+                <div class="six columns right">
+                    <ul>
+                        <li><a href="/Pub/Index">Index</a></li>
+                        <li><a href="/Pub/About">About</a></li>
+                        <li><a href="/Pub/Careers">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img src="~/Content/images/loading100.gif" alt="loading..." id="loading" />
+</body>
+</html>

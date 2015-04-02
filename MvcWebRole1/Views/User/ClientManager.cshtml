@@ -1,0 +1,77 @@
+﻿@model Ignite.Models.UserManagerViewModel
+
+@{
+    ViewBag.Title = "Client Management";
+}
+
+@Styles.Render("~/Content/royalslider.css",
+                "~/Content/rs-ignite.css")
+@Scripts.Render("~/Scripts/jquery.royalslider.min.js")
+
+<div class="row">
+    <div class="three columns item-list-left no-padding overthrow">
+        <div class="controls">
+            @using (Html.BeginForm("ClientManager", "User", FormMethod.Post, new { @style = "margin:0;" }))
+            { 
+                    @Html.TextBox("SearchString", "", new { @style = "margin:0;", @placeholder = "Filter" })
+                    <input type="submit" value="Search" class="small button" style="margin:0; width:100%;" />
+            } 
+
+            <a href="#Create" id="ViewCreate" class="small button" style="width:100%;" onclick="ShowCreate()">Create New</a>
+        </div>
+
+        <ul class="cool-list">
+            @if(Model.UserList.Count() > 0) {
+                foreach (var user in Model.UserList)
+                { 
+                    <li id="client-@user.User.UserName" class="@(user.Profile.Role == "pt" ? "green" : user.Profile.Role == "admin" ? "red" : "")">
+                        <img src="../../Content/uploads/@(user.Profile != null && user.Profile.ProfileImage != "" ? 
+                                                user.Profile.ProfileImage : 
+                                                "../images/default-profile-image.jpg")" alt="user thumbnail" />
+                        <div>
+                            <span>@user.Profile.FullName</span>
+                        </div>
+                    </li>
+                } 
+            }
+            else
+            {
+                <li>
+                    <span style="position:relative; top:6px; left:6px;">No results.</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="nine columns no-padding">
+        @{ Html.RenderPartial("_StatusMessage"); }
+        <div id="context">
+            @if (Model.SelectedUser != null)
+            {
+                Html.RenderAction("ViewProfile", "User", new { id = Model.SelectedUser });
+            }else{
+                <h2>Select a client to view their profile.</h2>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function ShowProfile(user) {
+        $('#context').loadContent('/User/ViewProfile', user);
+    }
+    function ShowDelete(user) {
+        $('#context').loadContent('/User/Delete', user);
+    }
+    function ShowCreate() {
+        $('#context').loadContent('/User/Create');
+    }
+
+    $(document).ready(function () {
+        $('ul.cool-list li').click(function () {
+            $('ul.cool-list li.active').removeClass('active');
+            $(this).addClass('active');
+            ShowProfile($(this).attr('id').split('-')[1]);
+        });
+    });
+</script>

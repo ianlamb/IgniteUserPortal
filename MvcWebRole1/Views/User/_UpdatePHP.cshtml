@@ -1,0 +1,195 @@
+﻿@model Ignite.Models.UserViewModel
+
+@using (Html.BeginForm("UpdatePHP", "User")) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.User.UserName)
+        
+    <div class="twelve columns edit">
+        <div class="row">
+            <!-- LEFT COLUMN -->
+            <div class="six columns">
+                <div class="row">
+                    <div class="six columns bold">Weight</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.Weight)
+                        @Html.ValidationMessageFor(model => model.PHP.Weight)
+                    </div>
+                    <div class="three columns metric-label">
+                        Kg
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Height</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.Height)
+                        @Html.ValidationMessageFor(model => model.PHP.Height)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Resting BP (Diastolic)</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.RestDiastolicBP)
+                        @Html.ValidationMessageFor(model => model.PHP.RestDiastolicBP)
+                    </div>
+                    <div class="three columns metric-label">
+                            
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Resting BP (Systolic)</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.RestSystolicBP)
+                        @Html.ValidationMessageFor(model => model.PHP.RestSystolicBP)
+                    </div>
+                    <div class="three columns metric-label">
+                            
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Resting Heart Rate</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.RestHeartRate)
+                        @Html.ValidationMessageFor(model => model.PHP.RestHeartRate)
+                    </div>
+                    <div class="three columns metric-label">
+                        BPM
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Fat Weight</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.FatWeight)
+                        @Html.ValidationMessageFor(model => model.PHP.FatWeight)
+                    </div>
+                    <div class="three columns metric-label">
+                        Kg
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Fat Free Weight</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.FatFreeWeight)
+                        @Html.ValidationMessageFor(model => model.PHP.FatFreeWeight)
+                    </div>
+                    <div class="three columns metric-label">
+                        Kg
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Body Water</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.BodyWater)
+                        @Html.ValidationMessageFor(model => model.PHP.BodyWater)
+                    </div>
+                    <div class="three columns metric-label">
+                        Kg
+                    </div>
+                </div>
+            </div>
+            <!-- RIGHT COLUMN -->
+            <div class="six columns">
+                <div class="row">
+                    <div class="six columns bold">Chest</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.Chest)
+                        @Html.ValidationMessageFor(model => model.PHP.Chest)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Left Arm</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.LeftArm)
+                        @Html.ValidationMessageFor(model => model.PHP.LeftArm)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Right Arm</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.RightArm)
+                        @Html.ValidationMessageFor(model => model.PHP.RightArm)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Waist</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.Waist)
+                        @Html.ValidationMessageFor(model => model.PHP.Waist)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Hips</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.Hips)
+                        @Html.ValidationMessageFor(model => model.PHP.Hips)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Left Thigh</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.LeftThigh)
+                        @Html.ValidationMessageFor(model => model.PHP.LeftThigh)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Right Thigh</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.RightThigh)
+                        @Html.ValidationMessageFor(model => model.PHP.RightThigh)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Left Calf</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.LeftCalf)
+                        @Html.ValidationMessageFor(model => model.PHP.LeftCalf)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns bold">Right Calf</div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.PHP.RightCalf)
+                        @Html.ValidationMessageFor(model => model.PHP.RightCalf)
+                    </div>
+                    <div class="three columns metric-label">
+                        cm
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <center>
+        <p>
+            <input type="submit" value="Save" class="small success button" />
+		    <input type="button" value="Cancel" class="small secondary button" onclick="CancelEditPHP()" />
+        </p>
+    </center>
+
+}

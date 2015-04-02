@@ -1,0 +1,134 @@
+﻿@model Ignite.Models.RoutineViewModel
+
+@{
+    ViewBag.Title = "My Fitness Plan";
+}
+
+@Styles.Render("~/Content/royalslider.css",
+               "~/Content/rs-ignite.css")
+@Scripts.Render("~/Scripts/jquery.royalslider.min.js")
+
+@{ Html.RenderPartial("_StatusMessage"); }
+
+<div id="videoModal" class="reveal-modal">
+    <div class="flex-video">
+        <iframe width="640" height="360" id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div class="row" style="margin-top: 10px;">
+    <div class="four columns">
+        <div style="margin-top: 10px;"><strong>Goal: </strong>@Model.Goal</div>
+    </div>
+    <div class="three columns end">
+        <span style="margin-top: 10px;"><strong>Weight: </strong></span>
+        @Html.TextBoxFor(m => m.CurrentWeight, new { @style = "width:80px; display:inline;" })
+        <span style="margin-top: 10px;">lbs.</span>
+    </div>
+</div>
+    
+<div id="contentSlider" class="royalSlider rsDefaultInv">
+    @foreach (var d in Model.Days)
+    {
+        <div class="row rsContent">
+            <i class="rsTmb">Day: @d.DayNumber</i>
+            <div class="row">
+            @foreach (var e in d.Exercises)
+            {
+                <div class="row exercise" id="@e.ExerciseId">
+                    <div class="two columns exerciseThumb">
+                        <img src="@(!String.IsNullOrEmpty(e.Thumbnail) ? e.Thumbnail : "../../Content/images/exercise_thumb.jpg")" alt="exercise thumbnail" />
+                        <div id="VideoURL-@e.ExerciseId" style="display:none;">@e.VideoURL</div>
+                    </div>
+                    <div class="ten columns">
+                        <h4>@e.Name</h4>
+                        <div class="row ">
+                            <div class="three columns">
+                                <div class="exerciseLabel">Muscle Group</div>
+                                <div class="exerciseData">@e.MuscleGroup</div>
+                            </div>
+                            <div class="two columns">
+                                <div class="exerciseLabel">Force</div>
+                                <div class="exerciseData">@e.Force</div>
+                            </div>
+                            <div class="two columns">
+                                <div class="exerciseLabel">Level</div>
+                                <div class="exerciseData">@e.Level</div>
+                            </div>
+                            <div class="two columns">
+                                <div class="exerciseLabel">Mechanics</div>
+                                <div class="exerciseData">@e.Mechanics</div>
+                            </div>
+                            <div class="three columns">
+                                <div class="exerciseLabel">Rating</div>
+                                <div class="exerciseData">
+                                    @for(var i = 0; i < Convert.ToInt32(e.Rating); i++)
+                                    {
+                                        <i class="foundicon-star"></i>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sets">
+                @foreach (var set in e.Sets)
+                {
+                    <div class="row set">
+                        @using (Html.BeginForm("UpdateSet", "Fitness", FormMethod.Post, new { @id = "form-"+set.SetID }))
+                        {
+                            <input type="hidden" id="SetID" name="SetID" value="@set.SetID" />
+                            <div class="two columns offset-by-four">Set# @set.SetNumber</div>
+                            <div class="two columns">@Html.TextBox("Intensity", set.Intensity, new{ @placeholder = "Intensity", @class = "rsNoDrag", @enabled = (set.Complete == true ? "true" : "false") })</div>
+                            <div class="two columns">@Html.TextBox("RepNumber", set.RepNumber, new{ @placeholder = "Reps", @class = "rsNoDrag", @enabled = (set.Complete == true ? "true" : "false") })</div>
+                            <div class="two columns">
+                                <label for="@set.SetID-Complete" style="display:inline;">
+                                    <input type="checkbox" id="complete-@set.SetID" name="Complete" value="true" class="complete-set" onchange="CompleteSet('@set.SetID')" />
+                                    <span class="custom checkbox"></span>
+                                    Complete
+                                </label>
+                            </div>
+                        }
+                    </div>
+                }
+                </div>
+            }
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    var slider;
+
+    function CompleteSet(setId) {
+        //$('#form-' + setId).submit();
+        var dataString = $('#form-' + setId).serialize();
+        //alert (dataString);return false;  
+        $.ajax({
+            type: "POST",
+            url: "UpdateSet",
+            data: dataString,
+            success: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('.exercise').click(function () {
+            $(this).next('.sets').toggle();
+            $('#contentSlider').rsUpdate();
+        });
+
+        $('.videoThumb').click(function () {
+            $('#videoFrame').attr('src') = $(this).attr('id');
+            $('#videoModal').reveal();
+        });
+
+
+        // initialize slider
+        $('#contentSlider').rsInit();
+    });
+</script>

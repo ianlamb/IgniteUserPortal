@@ -1,0 +1,39 @@
+﻿@model Ignite.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div id="login-form" class="five columns centered">
+        <fieldset>
+            <legend>Login Credentials</legend>
+                
+            <div class="editor-label">
+                @Html.LabelFor(m => m.UserName, "Username")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+                
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Password, "Password")
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+                
+            <div class="editor-label">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                <label for="RememberMe" style="display: inline;">Remember Me?</label>
+            </div>
+                
+            <input type="submit" value="Login" id="login" class="button loader" />
+        </fieldset>
+    </div>
+}

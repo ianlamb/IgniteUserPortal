@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0,user-scalable=no" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/jquery-ui.css",
+                   "~/Content/foundation.css",
+                   "~/Content/fonts/foundation_icons_general/stylesheets/general_foundicons.css",
+                   "~/Content/Site.css")
+    @Scripts.Render("~/bundles/jquery",
+                    "~/Scripts/foundation.min.js",
+                    "~/Scripts/jquery-ui.js",
+                    "~/Scripts/app.js",
+                    "~/Scripts/overthrow.js",
+                    "~/Scripts/modernizr-latest.js",
+                    "~/Scripts/ignite.js")
+    @RenderSection("scripts", required: false)
+
+    <style type="text/css">
+        #header { @(Session["HeaderColour"] != null ? "background: " +  Session["HeaderColour"].ToString() : "") }
+        #content { @(Session["BodyColour"] != null ? "background: " +  Session["BodyColour"].ToString() : "") }
+        html { @(Session["BodyColour"] != null ? "background: " +  Session["BodyColour"].ToString() : "") }
+        ul#nav-menu > li > a.active { @(Session["AccentColour"] != null ? "background: " +  Session["AccentColour"].ToString() : "") }
+        #header { @(Session["AccentColour"] != null ? "border-color: " +  Session["AccentColour"].ToString() : "") }
+        .item-list-left { @(Session["AccentColour"] != null ? "border-color: " +  Session["AccentColour"].ToString() : "") }
+    </style>
+</head>
+<body>
+    <div id="content" class="container">
+        <div id="header">
+            <div class="row">
+                <div id="title" class="three columns">
+                    <a href="@Url.Action("Index", "Pub")">
+                        <img src="../../Content/uploads/@(Session["LogoURL"] != null ? Session["LogoURL"].ToString() : "../images/logo.png")" id="logo" alt="logo" />
+                    </a>
+                </div>
+              
+                <div id="nav-container" class="nine columns">
+                    @{ Html.RenderPartial("_Navigation"); }
+                </div> 
+            </div>
+        </div>
+        
+        <div id="main" class="row">
+            <div class="twelve columns">
+                @RenderBody()
+            </div>
+        </div>
+            
+        @* TODO: Make this customizable for the gym??
+        <div id="footer">
+            <div class="row">
+                <div class="six columns left">
+                    2012 &copy; Igniteck Inc. All Rights Reserved.
+                </div>
+                <div class="six columns right">
+                    <ul>
+                        <li><a href="/Pub/Index">Index</a></li>
+                        <li><a href="/Pub/About">About</a></li>
+                        <li><a href="/Pub/Careers">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        *@
+    </div>
+
+    <img src="~/Content/images/loading100.gif" alt="loading..." id="loading" />
+</body>
+</html>

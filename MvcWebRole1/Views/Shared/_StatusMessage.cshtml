@@ -1,0 +1,9 @@
+﻿<div id="SuccessMessage" class="alert-box success" style="@(TempData["SuccessMessage"] != null ? "display:block" : "display:none")">
+    @TempData["SuccessMessage"]
+    <a href="#" class="close">&times;</a>
+</div>
+
+<div id="ErrorMessage" class="alert-box alert" style="@(TempData["ErrorMessage"] != null ? "display:block" : "display:none")">
+    @TempData["ErrorMessage"]
+    <a href="#" class="close">&times;</a>
+</div>

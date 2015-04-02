@@ -1,0 +1,30 @@
+﻿@model Ignite.Models.UserViewModel
+
+<div class="row exercise pt-card" id="ptcard-@Model.User.UserName">
+    <div class="two columns exerciseThumb">
+        <img src="../../Content/images/pt_thumb.jpg" alt="food thumbnail" />
+    </div>
+    <div class="four columns">
+        <h4>@Model.Profile.FullName</h4>
+    </div>
+    <div class="two columns">
+        <ul>
+            <li>Contact:</li>
+        </ul>
+    </div>
+    <div class="four columns">
+        <ul>
+            <li>555-555-5555</li>
+            <li>@Model.User.Email</li>
+            <li><a href="#">Chat</a></li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.pt-card').click(function () {
+            window.location.href = window.location.href.split('/User/')[0] + '/User/UserManager/' + $(this).attr('id').split('-')[1];
+        });
+    });
+</script>

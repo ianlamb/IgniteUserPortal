@@ -1,0 +1,66 @@
+﻿@model Ignite.Models.CreateUserModel
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    <div class="eight columns end">
+        <fieldset>
+            <legend>Create User</legend>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.UserRole) 
+                </div>
+                <div class="three columns end">
+                    @Html.DropDownListFor(m => m.UserRole, (SelectList)ViewBag.Roles) 
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.UserName) 
+                </div>
+                <div class="six columns">
+                    @Html.TextBoxFor(m => m.UserName) 
+                    @Html.ValidationMessageFor(m => m.UserName) 
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Email) 
+                </div>
+                <div class="six columns">
+                    @Html.TextBoxFor(m => m.Email) 
+                    @Html.ValidationMessageFor(m => m.Email) 
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Password) 
+                </div>
+                <div class="six columns">
+                    @Html.PasswordFor(m => m.Password) 
+                    @Html.ValidationMessageFor(m => m.Password) 
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.ConfirmPassword) 
+                </div>
+                <div class="six columns">
+                    @Html.PasswordFor(m => m.ConfirmPassword) 
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword) 
+                </div>
+            </div>
+                
+            <center>
+                <p>
+                    <input type="submit" value="Create" class="small success button" />
+		            <input type="button" value="Cancel" class="small secondary button cancel-action" />
+                </p>
+            </center>
+        </fieldset>
+    </div>
+}

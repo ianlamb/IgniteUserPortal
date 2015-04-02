@@ -1,0 +1,195 @@
+﻿@model Ignite.Models.DashClientViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+@Styles.Render("~/Content/royalslider.css",
+                "~/Content/rs-ignite.css")
+@Scripts.Render("~/Scripts/jquery.royalslider.min.js",
+                "~/Scripts/highcharts.js")
+    
+
+<div id="contentSlider" class="royalSlider rsDefaultInv">
+    <div class="row rsContent">
+        <i class="rsTmb">Main</i>
+        <div id="dash">
+            
+            @*App/Progress*@
+            <div class="clear">
+                <div id="apps" class="dashboard-section left">
+                    <h1>Mobile Apps</h1>
+                    <img src="~/Content/images/mobile_devices.png" alt="app image" id="mobile-devices" />
+                    <ul id="mobile-downloads">
+                        <li><a href="#">Apple</a></li>
+                        <li><a href="#">Android</a></li>
+                        <li><a href="#">Windows</a></li>
+                    </ul>
+                </div>
+                <div class="dashboard-section right">
+                    <h1>Progress</h1>
+                    <div class="alert-box success">
+                        Congratulations on reaching your weight goal!
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                </div>
+            </div>
+
+            @*Fitness/Nutrition*@
+            <div class="clear">
+                <div class="dashboard-section left">
+                    <h1>Fitness Plan</h1>
+                    <a href="/Fitness/MyFitnessPlan" class="large button alert">Get Started with Fitness</a>
+                </div>
+                <div class="dashboard-section right">
+                    <h1>Nutrition Plan</h1>
+                    <a href="/Nutrition/MyNutritionPlan" class="large button alert">Get Started with Nutrition</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{ Html.RenderAction("News"); }
+
+    <div class="row rsContent" style="height:400px;">
+        <i class="rsTmb">Weight Change</i>
+        <div id="graph1" class="twelve columns"></div>
+    </div>
+    
+    <div class="row rsContent">
+        <i class="rsTmb">Gym Time</i>
+        <div id="graph2" class="twelve columns"></div>
+    </div>
+    
+    <div class="row rsContent">
+        <i class="rsTmb">Calorie Intake</i>
+        <div id="graph3" class="twelve columns"></div>
+    </div>
+</div>
+
+<script type="text/javascript">   
+    var chart1; // globally available
+    var chart2;
+    var chart3;
+    var slider;
+
+    $(document).ready(function () {
+        // CHARTS
+        // weight loss
+        chart1 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'graph1',
+                type: 'line'
+            },
+            title: {
+                text: 'Weight Change over Time'
+            },
+            xAxis: {
+                categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10']
+            },
+            yAxis: {
+                title: {
+                    text: 'Weight (lbs)'
+                }
+            },
+            colors: [
+                '#92A8CD',
+                '#FFC125',
+                '#89A54E',
+                '#80699B',
+                '#3D96AE',
+                '#DB843D',
+                '#92A8CD',
+                '#A47D7C',
+                '#B5CA92',
+            ],
+            series: [{
+                name: 'Actual Weight',
+                data: [200, 201, 199, 196, 193, 190, 186, 185, 183, 181, 179]
+            }, {
+                name: 'Goal Weight',
+                data: [200, 198, 196, 194, 192, 190, 188, 186, 184, 182, 180]
+            }]
+        });
+
+        // gym time
+        chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'graph2',
+                type: 'column'
+            },
+            title: {
+                text: 'Gym Time'
+            },
+            xAxis: {
+                categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10']
+            },
+            yAxis: {
+                title: {
+                    text: 'Time (hours)'
+                }
+            },
+            colors: [
+                '#2AA6CA',
+                '#FFC125',
+                '#89A54E',
+                '#80699B',
+                '#3D96AE',
+                '#DB843D',
+                '#92A8CD',
+                '#A47D7C',
+                '#B5CA92',
+            ],
+            series: [{
+                name: 'Time spent working out',
+                data: [5, 5, 4, 3, 5, 6, 5, 5, 3, 5, 4]
+            }]
+        });
+
+        // calorie intake
+        chart3 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'graph3',
+                type: 'column'
+            },
+            title: {
+                text: 'Calorie Intake'
+            },
+            xAxis: {
+                categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10']
+            },
+            yAxis: {
+                title: {
+                    text: 'Calories'
+                }
+            },
+            colors: [
+                '#89A54E',
+                '#FFC125',
+                '#89A54E',
+                '#80699B',
+                '#3D96AE',
+                '#DB843D',
+                '#92A8CD',
+                '#A47D7C',
+                '#B5CA92',
+            ],
+            series: [{
+                name: 'Intake for one week',
+                data: [13200, 13500, 12900, 13000, 12000, 12400, 12200, 12000, 11900, 12500, 12700]
+            }]
+        });
+
+
+
+
+        // SLIDER
+        $('#contentSlider').rsInit();
+
+        // resize charts
+        chart1.setSize(parseInt($('#contentSlider').css('width')) - 40, parseInt($('#contentSlider').css('height')) - 100, true);
+        chart2.setSize(parseInt($('#contentSlider').css('width')) - 40, parseInt($('#contentSlider').css('height')) - 100, true);
+        chart3.setSize(parseInt($('#contentSlider').css('width')) - 40, parseInt($('#contentSlider').css('height')) - 100, true);
+        $('#contentSlider').rsUpdate();
+    });
+</script>

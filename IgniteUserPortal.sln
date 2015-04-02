@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IgniteWebRole", "MvcWebRole1\IgniteWebRole.csproj", "{B1B9F440-A003-4C95-9A82-C3F3E6C6F481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebRole1.Tests", "MvcWebRole1.Tests\MvcWebRole1.Tests.csproj", "{5ED19C8E-9E0C-44F0-824F-D37BCB1008E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D1AB5F56-FEB5-4B06-9CCE-54D20ABF7BD8}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1B9F440-A003-4C95-9A82-C3F3E6C6F481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B9F440-A003-4C95-9A82-C3F3E6C6F481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B9F440-A003-4C95-9A82-C3F3E6C6F481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B9F440-A003-4C95-9A82-C3F3E6C6F481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED19C8E-9E0C-44F0-824F-D37BCB1008E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED19C8E-9E0C-44F0-824F-D37BCB1008E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED19C8E-9E0C-44F0-824F-D37BCB1008E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED19C8E-9E0C-44F0-824F-D37BCB1008E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

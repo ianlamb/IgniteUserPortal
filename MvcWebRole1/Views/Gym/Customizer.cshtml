@@ -1,0 +1,145 @@
+﻿@model Ignite.Models.GymSettingsViewModel
+
+@{
+    ViewBag.Title = "Customize Portal";
+}
+
+@Styles.Render("~/Content/evol.colorpicker.css")
+@Scripts.Render("~/Scripts/evol.colorpicker.js")
+
+@{ Html.RenderPartial("_StatusMessage"); }
+
+@*  OMG THIS IS IMPORTANT FOR PASSING HTTPPOSTEDFILEBASE!!! 
+    The form needs the correct enctype or it will not populate the attribute on submit *@
+@using (Html.BeginForm("Settings", "Gym", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.ValidationSummary(true) 
+    
+    @Html.HiddenFor(model => model.GymId) 
+    
+    <div class="row">
+        <div class="six columns">
+            <fieldset>
+                <legend>Gym Logo</legend>
+                <img src="../../Content/uploads/@Model.LogoURL " alt="logo" class="logo-thumb" />
+
+                <label for="LogoFile">Logo:</label>
+                <input type="file" name="LogoFile" id="LogoFile" />
+            </fieldset>
+        </div>
+        <div class="six columns">
+            <fieldset>
+                <legend>Colours</legend>
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(model => model.HeaderColour) 
+                    </div>
+                    <div class="eight columns">
+                        @Html.TextBoxFor(model => model.HeaderColour, new { @class = "colorpicker", @style = "width: 100px; display: inline-block;" })
+                        @Html.ValidationMessageFor(model => model.HeaderColour) 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(model => model.BodyColour) 
+                    </div>
+                    <div class="eight columns">
+                        @Html.TextBoxFor(model => model.BodyColour, new { @class = "colorpicker", @style = "width: 100px; display: inline-block;" }) 
+                        @Html.ValidationMessageFor(model => model.BodyColour) 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(model => model.AccentColour) 
+                    </div>
+                    <div class="eight columns">
+                        @Html.TextBoxFor(model => model.AccentColour, new { @class = "colorpicker", @style = "width: 100px; display: inline-block;" }) 
+                        @Html.ValidationMessageFor(model => model.AccentColour) 
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    
+    <hr />
+    <div class="row">
+            
+        <div class="six columns">
+            <fieldset>
+                <legend>Settings</legend>
+                <div class="row">
+                    <div class="six columns bold">
+                        @Html.LabelFor(model => model.GymName) 
+                    </div>
+                    <div class="six columns">
+                        @Html.TextBoxFor(model => model.GymName) 
+                        @Html.ValidationMessageFor(model => model.GymName) 
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="six columns bold">
+                        @Html.LabelFor(model => model.UnitType) 
+                    </div>
+                    <div class="three columns">
+                        @Html.DropDownListFor(model => model.UnitType, (SelectList)ViewBag.UnitTypes)
+                        
+                    </div>
+                    <div class="three columns metric-label">
+                    
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="six columns bold">
+                        @Html.LabelFor(model => model.DropdownIncrement) 
+                    </div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.DropdownIncrement) 
+                        @Html.ValidationMessageFor(model => model.DropdownIncrement) 
+                    </div>
+                    <div class="three columns metric-label">
+                    
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="six columns bold">
+                        @Html.LabelFor(model => model.ScreenTimeout) 
+                    </div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.ScreenTimeout) 
+                        @Html.ValidationMessageFor(model => model.ScreenTimeout) 
+                    </div>
+                    <div class="three columns metric-label">
+                        minutes
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="six columns bold">
+                        @Html.LabelFor(model => model.SessionTimeout) 
+                    </div>
+                    <div class="three columns">
+                        @Html.TextBoxFor(model => model.SessionTimeout) 
+                        @Html.ValidationMessageFor(model => model.SessionTimeout) 
+                    </div>
+                    <div class="three columns metric-label">
+                        minutes
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+            
+    <div class="row">
+        <div class="two columns offset-by-five">
+            <input type="submit" value="Save" class="small button" style="width:100%;" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".colorpicker").colorpicker();
+    });
+</script>

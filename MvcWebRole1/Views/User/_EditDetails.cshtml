@@ -1,0 +1,151 @@
+﻿@model Ignite.Models.UserViewModel
+
+@*  OMG THIS IS IMPORTANT FOR PASSING HTTPPOSTEDFILEBASE!!! 
+    The form needs the correct enctype or it will not populate the attribute on submit *@
+@using (Html.BeginForm("EditDetails", "User", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.ValidationSummary(true) 
+    @Html.HiddenFor(model => model.User.UserName)
+        
+    <div class="twelve columns edit">
+        <div class="row">
+            <!-- LEFT COLUMN -->
+            <div class="two columns">
+                <img src="../../Content/uploads/@(Model.Profile.ProfileImage != null && Model.Profile.ProfileImage != "" ? 
+                                                        Model.Profile.ProfileImage : 
+                                                        "../images/default-profile-image.jpg") " 
+                    alt="profile image" class="profile-thumb" />
+
+                <label for="ImageFile" class="bold">Profile Photo:</label>
+                <input type="file" name="ImageFile" id="ImageFile" />
+            </div>
+            <!-- MIDDLE COLUMN -->
+            <div class="five columns">
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.FirstName)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.FirstName)
+                        @Html.ValidationMessageFor(m => m.Profile.FirstName)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.LastName)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.LastName)
+                        @Html.ValidationMessageFor(m => m.Profile.LastName)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.User.Email)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.User.Email)
+                        @Html.ValidationMessageFor(m => m.User.Email)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.DOB)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.DOB)
+                        @Html.ValidationMessageFor(m => m.Profile.DOB)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.Gender)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.Gender)
+                        @Html.ValidationMessageFor(m => m.Profile.Gender)
+                    </div>
+                </div>
+            </div>
+            <!-- RIGHT COLUMN -->
+            <div class="five columns">
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.Address1)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.Address1)
+                        @Html.ValidationMessageFor(m => m.Profile.Address1)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.City)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.City)
+                        @Html.ValidationMessageFor(m => m.Profile.City)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.Province)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.Province)
+                        @Html.ValidationMessageFor(m => m.Profile.Province)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.Country)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.Country)
+                        @Html.ValidationMessageFor(m => m.Profile.Country)
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="four columns bold">
+                        @Html.LabelFor(m => m.Profile.PostalCode)
+                    </div>
+                    <div class="eight columns">
+                        @Html.EditorFor(m => m.Profile.PostalCode)
+                        @Html.ValidationMessageFor(m => m.Profile.PostalCode)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <center>
+        <p>
+            <input type="submit" value="Save" class="small success button" />
+		    <input type="button" value="Cancel" class="small secondary button" onclick="CancelEditDetails()" />
+        </p>
+    </center>
+
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input').addClass('rsNoDrag');
+
+        if (!Modernizr.touch && !Modernizr.inputtypes.datetime) {
+            $('input[type="datetime"]').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1900:2013',
+                dateFormat: 'mm/dd/yy'
+            });
+        }
+    });
+</script>

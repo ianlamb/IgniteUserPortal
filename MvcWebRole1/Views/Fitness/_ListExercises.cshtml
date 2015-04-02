@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Ignite.Models.ExerciseListViewModel>
+
+@if (Model.Count() > 0) {
+     foreach (var e in Model) {
+
+        <div class="row exercise" id="@e.ExerciseId ">
+            <div class="two columns exerciseThumb">
+                <img src="@(!String.IsNullOrEmpty(e.Thumbnail) ? e.Thumbnail : "../../Content/images/exercise_thumb.jpg")" alt="exercise thumbnail" />
+                <div id="VideoURL-@e.ExerciseId" style="display:none;">@e.VideoURL</div>
+            </div>
+            <div class="ten columns">
+                <h4>@e.Name</h4>
+                <div class="row ">
+                    <div class="three columns">
+                        <div class="exerciseLabel">Muscle Group</div>
+                        <div class="exerciseData">@e.MuscleGroup</div>
+                    </div>
+                    <div class="two columns">
+                        <div class="exerciseLabel">Force</div>
+                        <div class="exerciseData">@e.Force</div>
+                    </div>
+                    <div class="two columns">
+                        <div class="exerciseLabel">Level</div>
+                        <div class="exerciseData">@e.Level</div>
+                    </div>
+                    <div class="two columns">
+                        <div class="exerciseLabel">Mechanics</div>
+                        <div class="exerciseData">@e.Mechanics</div>
+                    </div>
+                    <div class="three columns">
+                        <div class="exerciseLabel">Rating</div>
+                        <div class="exerciseData">
+                            @for(var i = 0; i < Convert.ToInt32(e.Rating); i++)
+                            {
+                                <i class="foundicon-star"></i>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert-box alert">No results.</div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.exercise').click(function () {
+            var id = $(this).attr('id');
+            $('#video-frame').attr("src", $('#VideoURL-' + id).html());
+            $("#videoModal").reveal();
+        });
+    });
+</script>

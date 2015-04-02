@@ -1,0 +1,88 @@
+﻿@model Ignite.Models.UserViewModel
+
+<div class="row">
+    <div class="two columns bold">Age</div>
+    <div class="two columns">@Model.PHP.Age </div>
+
+    <div class="two columns bold">Weight</div>
+    <div class="two columns">@Model.PHP.Weight </div>
+
+    <div class="two columns bold">Height</div>
+    <div class="two columns">@Model.PHP.Height </div>
+</div>
+<hr />
+<div class="row">
+    <div class="six columns">
+        <div class="row">
+            <div class="six columns bold">Resting BP (Diastolic)</div>
+            <div class="six columns">@Model.PHP.RestDiastolicBP </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Resting BP (Systolic)</div>
+            <div class="six columns">@Model.PHP.RestSystolicBP </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Resting Heart Rate</div>
+            <div class="six columns">@Model.PHP.RestHeartRate </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Fat Weight</div>
+            <div class="six columns">@Model.PHP.FatWeight </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Fat Free Weight</div>
+            <div class="six columns">@Model.PHP.FatFreeWeight </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Body Water</div>
+            <div class="six columns">@Model.PHP.BodyWater </div>
+        </div>
+    </div>
+    <div class="six columns">
+        <div class="row">
+            <div class="six columns bold">Chest</div>
+            <div class="six columns">@Model.PHP.Chest </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Left Arm</div>
+            <div class="six columns">@Model.PHP.LeftArm </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Right Arm</div>
+            <div class="six columns">@Model.PHP.RightArm </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Waist</div>
+            <div class="six columns">@Model.PHP.Waist </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Hips</div>
+            <div class="six columns">@Model.PHP.Hips </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Left Thigh</div>
+            <div class="six columns">@Model.PHP.LeftThigh </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Right Thigh</div>
+            <div class="six columns">@Model.PHP.RightThigh </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Left Calf</div>
+            <div class="six columns">@Model.PHP.LeftCalf </div>
+        </div>
+        <div class="row">
+            <div class="six columns bold">Right Calf</div>
+            <div class="six columns">@Model.PHP.RightCalf </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="two columns bold">Comments</div>
+    <div class="ten columns">@Model.PHP.Comments </div>
+</div>
+
+<p style="text-align:center;">
+    <button class="small button" onclick="ShowUpdatePHP('@Model.User.UserName ')">Update PHP</button>
+</p>

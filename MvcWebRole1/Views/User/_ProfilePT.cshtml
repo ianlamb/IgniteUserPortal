@@ -1,0 +1,93 @@
+﻿@model Ignite.Models.UserViewModel
+
+<div id="modal" class="reveal-modal">
+    <div id="Context"></div>
+    <a class="cancel-action close-reveal-modal">&#215;</a>
+</div>
+        
+<div id="contentSlider" class="royalSlider rsDefaultInv">
+    <div id="profile-details" class="row rsContent">
+        <i class="rsTmb">Details</i>
+        <div class="profile details">
+            <div id="details">
+                @{ Html.RenderPartial("_ViewDetails", Model); }
+            </div>
+            <div id="edit-details">
+                @{ Html.RenderPartial("_EditDetails", Model); }
+            </div>
+        </div>
+    </div>
+        
+    <div class="row rsContent">
+        <i class="rsTmb">Clients</i>
+        <div id="clients">
+            @if(((List<Ignite.Models.UserViewModel>)ViewBag.Clients).Count > 0) {
+                foreach(var c in (List<Ignite.Models.UserViewModel>)ViewBag.Clients) {
+                <div class="row exercise client-card" id="clientcard-@c.User.UserName">
+                    <div class="two columns exerciseThumb">
+                        <img src="../../Content/uploads/@(c.Profile != null && c.Profile.ProfileImage != "" ? 
+                                                    c.Profile.ProfileImage : 
+                                                    "../images/default-profile-image.jpg")" alt="user thumbnail" />
+                    </div>
+                    <div class="four columns">
+                        <h4>@c.Profile.FullName</h4>
+                    </div>
+                    <div class="two columns">
+                        <ul>
+                            <li>@c.User.UserName</li>
+                            <li>@c.Profile.Gender</li>
+                        </ul>
+                    </div>
+                    <div class="four columns">
+                        <ul>
+                            <li>@c.User.Email</li>
+                            <li>@c.Profile.Address1</li>
+                            <li>@c.Profile.City</li>
+                        </ul>
+                    </div>
+                </div>
+                }
+            }else{
+                <p>No assigned clients.</p>
+            }
+
+            <div style="margin-top:20px;">
+                <input type="text" placeholder="Email" style="display:inline; width:200px;" />
+                <input type="button" value="Invite Client" class="small button" style="display:inline;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">   
+    function ShowEditDetails(user) {
+        $('#details').slideUp();
+        $('#edit-details').slideDown();
+
+    }
+    function CancelEditDetails() {
+        $('#edit-details').slideUp();
+        $('#details').slideDown();
+    }
+    function ShowUpdatePHP(user) {
+        $('#php').slideUp();
+        $('#edit-php').slideDown();
+    }
+    function CancelEditPHP() {
+        $('#edit-php').slideUp();
+        $('#php').slideDown();
+    }
+
+    $(document).ready(function () {
+        $('#edit-details').hide();
+        $('#edit-php').hide();
+
+        $('.client-card').click(function () {
+            window.location.href = window.location.href.split('/User/')[0] + '/User/UserManager/' + $(this).attr('id').split('-')[1];
+        });
+
+        // initialize slider
+        $('#contentSlider').rsInit();
+    });
+</script>

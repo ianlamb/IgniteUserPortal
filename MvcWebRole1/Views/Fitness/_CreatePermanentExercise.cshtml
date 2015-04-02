@@ -1,0 +1,92 @@
+﻿@model Ignite.Models.ExerciseListViewModel
+
+@using (Html.BeginForm("CreatePermanentExercise", "Fitness", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Exercise creation was unsuccessful. Please correct the errors and try again.")
+    <div class="eight columns end">
+        <fieldset>
+            <legend>Create Workout</legend>
+            <p>Creating new workouts only effects this gym.</p>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Name) 
+                </div>
+                <div class="six columns end">
+                    @Html.TextBoxFor(m => m.Name) 
+                    @Html.ValidationMessageFor(m => m.Name) 
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.MuscleGroup) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.MuscleGroup, (SelectList)ViewBag.MuscleGroupOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Equipment) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Equipment, (SelectList)ViewBag.EquipmentOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Level) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Level, (SelectList)ViewBag.LevelOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Force) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Force, (SelectList)ViewBag.ForceOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.Mechanics) 
+                </div>
+                <div class="six columns">
+                    @Html.DropDownListFor(m => m.Mechanics, (SelectList)ViewBag.MechanicsOptions)
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    <label for="ThumbnailFile">Thumbnail</label>
+                </div>
+                <div class="six columns">
+                    <input type="file" name="ThumbnailFile" id="ThumbnailFile" />
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="six columns bold">
+                    @Html.LabelFor(m => m.VideoURL)
+                </div>
+                <div class="six columns">
+                    @Html.TextBoxFor(m => m.VideoURL) 
+                    @Html.ValidationMessageFor(m => m.VideoURL) 
+                </div>
+            </div>
+                
+            <center>
+                <p>
+                    <input type="submit" value="Create" class="small success button" />
+                </p>
+            </center>
+        </fieldset>
+    </div>
+}

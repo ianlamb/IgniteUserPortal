@@ -1,0 +1,103 @@
+﻿@model Ignite.Models.UserViewModel
+
+@{
+    ViewBag.Title = "MyProfile";
+}
+
+@Styles.Render("~/Content/royalslider.css",
+                "~/Content/rs-ignite.css")
+@Scripts.Render("~/Scripts/jquery.royalslider.min.js")
+    
+@{ Html.RenderPartial("_StatusMessage"); }
+
+
+<div id="modal" class="reveal-modal">
+    <div id="Context"></div>
+    <a class="cancel-action close-reveal-modal">&#215;</a>
+</div>
+        
+<div id="contentSlider" class="royalSlider rsDefaultInv">
+    @* Profile - All users *@
+    <div id="profile-details" class="row rsContent">
+        <i class="rsTmb">Details</i>
+        <div class="profile details">
+            <div id="details">
+                @{ Html.RenderPartial("_ViewDetails", Model); }
+            </div>
+            <div id="edit-details">
+                @{ Html.RenderPartial("_EditDetails", Model); }
+            </div>
+        </div>
+    </div>
+    @* Change Password - All users *@
+    <div id="profile-changepassword" class="row rsContent">
+        <i class="rsTmb">Change Password</i>
+        <div class="profile details">
+            <div id="changepassword">
+                @{ Html.RenderPartial("_ChangePassword", new Ignite.Models.ChangePasswordModel()); }
+            </div>
+        </div>
+    </div>
+    @* Personal Health Profile - Clients only *@
+    @if (Context.User.IsInRole("client"))
+    {
+    <div class="row rsContent">
+        <i class="rsTmb">Health Profile</i>
+        <div id="Div1" class="profile details">
+            <div id="php">
+                @{ Html.RenderPartial("_ViewPHP", Model); }
+            </div>
+            <div id="edit-php">
+                @{ Html.RenderPartial("_UpdatePHP", Model); }
+            </div>
+        </div>
+    </div>
+    }
+    @* Personal Trainer (list) - Clients only *@
+    @if(Context.User.IsInRole("client"))
+    {
+    <div class="row rsContent">
+        <i class="rsTmb">Personal Trainer</i>
+        <div id="pt" class="toggleContent">
+            @if (Model.Profile.AssignedPT != null && Model.Profile.AssignedPT != "")
+            {
+                Html.RenderAction("ViewPT", new { pt = Model.Profile.AssignedPT });
+            }
+            else
+            {
+                 <p>No personal trainer assigned.</p>
+            }
+        </div>
+    </div>
+    }
+</div>
+
+
+<script type="text/javascript">   
+    var slider;
+
+    function ShowEditDetails(user) {
+        $('#details').slideUp();
+        $('#edit-details').slideDown();
+
+    }
+    function CancelEditDetails() {
+        $('#edit-details').slideUp();
+        $('#details').slideDown();
+    }
+    function ShowUpdatePHP(user) {
+        $('#php').slideUp();
+        $('#edit-php').slideDown();
+    }
+    function CancelEditPHP() {
+        $('#edit-php').slideUp();
+        $('#php').slideDown();
+    }
+
+    $(document).ready(function () {
+        $('#edit-details').hide();
+        $('#edit-php').hide();
+
+        slider = $("#contentSlider").rsInit();
+    });
+</script>

@@ -1,0 +1,60 @@
+﻿<div id="index-backdrop"></div>
+<div id="index-main" class="row">
+    <div class="eight columns">
+        <div class="row">
+            <div class="twelve columns">
+                <h1 class="center">Ignite Your Fitness.</h1>
+            </div>
+        </div>
+        @*
+        <div class="row">
+            <div class="twelve columns">
+                <img src="" alt="splash image" />
+            </div>
+        </div>
+        *@
+        <div class="row" style="margin-top:44px;">
+            <div class="four columns">
+                <a href="#" class="index-description client">
+                    <span class="desc-head">
+                        Clients<br />
+                    </span>
+                    <span class="desc-body">
+                        Learn about new, exciting ways to stay fit and have the opportunity to connect with certified professional trainers!
+                    </span>
+                </a>
+            </div>
+            <div class="four columns">
+                <a href="#" class="index-description pt">
+                    <span class="desc-head">
+                        Trainers<br />
+                    </span>
+                    <span class="desc-body">
+                        Expand your client base and make interactions quick and seemless by utilizing our virtual trainer tools!
+                    </span>
+                </a>
+            </div>
+            <div class="four columns">
+                <a href="#" class="index-description gym">
+                    <span class="desc-head">
+                        Gyms
+                    </span>
+                    <span class="desc-body">
+                        Keep track of your trainers and members so you can develop better retention plans and keep your clients engaged!
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="four columns">
+        @if(Request.IsAuthenticated){
+           <div class="panel"><a href="/Account/Logout">Logout</a></div>
+        }
+        else
+        {
+            Html.RenderPartial("_Login", new Ignite.Models.LoginModel());
+            Html.RenderPartial("_Register", new Ignite.Models.RegisterModel());
+        }
+    </div>
+</div>

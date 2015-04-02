@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Ignite.Models.ExerciseListViewModel>
+
+@{
+    ViewBag.Title = "Exercise Manager";
+}
+
+@Styles.Render("~/Content/royalslider.css",
+                "~/Content/rs-ignite.css")
+@Scripts.Render("~/Scripts/jquery.royalslider.min.js")
+
+<div class="row">
+    <div class="three columns item-list-left no-padding overthrow">
+        <div class="controls">
+            @using (Html.BeginForm("ExerciseManager", "Fitness", FormMethod.Post, new { @style = "margin:0;" }))
+            { 
+                    @Html.TextBox("SearchString", "", new { @style = "margin:0;", @placeholder = "Filter by Name" })
+                    <input type="submit" value="Search" class="small button" style="margin:0; width:100%;" />
+            } 
+
+            <a href="#Create" id="ViewCreate" class="small button" style="width:100%;" onclick="ShowCreate()">Create New</a>
+        </div>
+
+        <ul class="cool-list">
+            @if(Model.Count() > 0) {
+                foreach (var e in Model) { 
+                    <li id="@e.ExerciseId">
+                        @*
+                        <img src="@(e.Thumbnail != null ? 
+                                    e.Thumbnail : 
+                                    "../../Content/images/default-profile-image.jpg")" alt="user thumbnail" /> *@
+                        <div>
+                            <span class="name">@e.Name</span>
+                        </div>
+                    </li>
+                } 
+            }
+            else
+            {
+                <li>
+                    <span style="position:relative; top:6px; left:6px;">No results.</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="nine columns">
+        @{ Html.RenderPartial("_StatusMessage"); }
+        <div id="context">
+            <h2>Make a selection to edit the exercise or click on "Create New" to make a new exercise for your gym.</h2>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function ShowProfile(exercise) {
+        $('#context').loadContent('EditPermanentExercise', exercise);
+    }
+    function ShowCreate() {
+        $('#context').loadContent('CreatePermanentExercise');
+    }
+
+    $(document).ready(function () {
+        $('ul.cool-list li').click(function () {
+            $('ul.cool-list li.active').removeClass('active');
+            $(this).addClass('active');
+            //ShowProfile($(this).attr('id'));
+            $('#context').loadContent('EditPermanentExercise', $(this).attr('id'));
+        });
+
+        $('span.name').each(function () {
+            if ($(this).html().length > 24)
+                $(this).html($(this).html().substr(0, 22) + "...");
+        });
+    });
+</script>

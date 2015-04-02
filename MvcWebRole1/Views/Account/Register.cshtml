@@ -1,0 +1,50 @@
+﻿@model Ignite.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div id="register-form" class="five columns centered">
+        <fieldset>
+            <legend>Registration Information</legend>
+                
+            <div class="editor-label">
+                @Html.LabelFor(m => m.UserName, "Username")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+                
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Email, "Email")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+                
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Password, "Password")
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+                
+            <div class="editor-label">
+                @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password")
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </div>
+                
+            <input type="submit" value="Register" class="button loader" />
+        </fieldset>
+    </div>
+}

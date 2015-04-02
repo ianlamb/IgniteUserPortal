@@ -1,0 +1,48 @@
+﻿@model Ignite.Models.UserViewModel
+
+@{
+    if(Context.User.IsInRole("admin"))
+    {
+        Html.RenderPartial("_ProfileAdmin", Model);
+    }
+    else if(Context.User.IsInRole("pt"))
+    {
+        Html.RenderPartial("_ProfilePT", Model);
+    }
+    else
+    {
+        Html.RenderPartial("_ProfileClient", Model); 
+    }
+}
+
+
+<script type="text/javascript">   
+    var slider;
+
+    function ShowEditDetails(user) {
+        $('#loading').show();
+        $('#details').slideUp();
+        $('#edit-details').slideDown();
+
+    }
+    function CancelEditDetails() {
+        $('#edit-details').slideUp();
+        $('#details').slideDown();
+    }
+    function ShowUpdatePHP(user) {
+        $('#php').slideUp();
+        $('#edit-php').slideDown();
+    }
+    function CancelEditPHP() {
+        $('#edit-php').slideUp();
+        $('#php').slideDown();
+    }
+
+    $(document).ready(function () {
+        $('#edit-details').hide();
+        $('#edit-php').hide();
+
+        // initialize slider
+        $('#contentSlider').rsInit();
+    });
+</script>

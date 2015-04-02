@@ -1,0 +1,49 @@
+﻿@model Ignite.Models.UserViewModel
+
+<div id="modal" class="reveal-modal">
+    <div id="Context"></div>
+    <a class="cancel-action close-reveal-modal">&#215;</a>
+</div>
+        
+<div id="contentSlider" class="royalSlider rsDefaultInv">
+    <div id="profile-details" class="row rsContent">
+        <i class="rsTmb">Details</i>
+        <div class="profile details">
+            <div id="details">
+                @{ Html.RenderPartial("_ViewDetails", Model); }
+            </div>
+            <div id="edit-details">
+                @{ Html.RenderPartial("_EditDetails", Model); }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">   
+    function ShowEditDetails(user) {
+        $('#details').slideUp();
+        $('#edit-details').slideDown();
+
+    }
+    function CancelEditDetails() {
+        $('#edit-details').slideUp();
+        $('#details').slideDown();
+    }
+    function ShowUpdatePHP(user) {
+        $('#php').slideUp();
+        $('#edit-php').slideDown();
+    }
+    function CancelEditPHP() {
+        $('#edit-php').slideUp();
+        $('#php').slideDown();
+    }
+
+    $(document).ready(function () {
+        $('#edit-details').hide();
+        $('#edit-php').hide();
+
+        var slider = $("#contentSlider").rsInit();
+        
+    });
+</script>

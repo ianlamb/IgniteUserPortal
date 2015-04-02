@@ -1,0 +1,224 @@
+﻿<ul id="nav-menu">
+    @if (Context.User.IsInRole("admin")) {
+        <li>
+            <a href="@Url.Action("Main", "Dashboard")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "class=active" : "")>
+                <i class="foundicon-graph"></i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("UserManager", "User")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "User"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "UserManager" ? "class=active" : "")>
+                <i class="foundicon-address-book"></i>
+                Users
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("ExerciseManager", "Fitness")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Fitness"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "ExerciseManager" ? "class=active" : "")>
+                <i class="foundicon-heart"></i>
+                Exercises
+            </a>
+        </li>
+        @*
+        <li>
+            <a href="@Url.Action("AdvertManager", "Gym")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Gym"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "AdvertManager" ? "class=active" : "")>
+                <i class="foundicon-website"></i>
+                Adverts
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("ChallengeManager", "Gym")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Gym"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "ChallengeManager" ? "class=active" : "")>
+                <i class="foundicon-flag"></i>
+                Challenges
+            </a>
+        </li>
+        *@
+        <li>
+            <a href="@Url.Action("Customizer", "Gym")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Gym"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "Customizer" ? "class=active" : "")>
+                <i class="foundicon-page"></i>
+                Customize
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyProfile", "User")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "User"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyProfile" ? "class=active" : "")>
+                <i class="foundicon-settings"></i>
+                Profile
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Logout", "Account")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "class=active" : "")>
+                <i class="foundicon-tools"></i>
+                Logout
+            </a>
+        </li>
+    }
+    else if (Context.User.IsInRole("pt"))
+    {
+        <li>
+            <a href="@Url.Action("Main", "Dashboard")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "class=active" : "")>
+                <i class="foundicon-graph"></i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("ClientManager", "User")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "User"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "ClientManager" ? "class=active" : "")>
+                <i class="foundicon-address-book"></i>
+                Clients
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("RoutineManager", "Fitness")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Fitness"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "RoutineManager" ? "class=active" : "")>
+                <i class="foundicon-heart"></i>
+                Fitness
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("NutritionManager", "Nutrition")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Nutrition"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "NutritionManager" ? "class=active" : "")>
+                <i class="foundicon-smiley"></i>
+                Nutrition
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyProfile", "User")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "User"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyProfile" ? "class=active" : "")>
+                <i class="foundicon-settings"></i>
+                Profile
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Logout", "Account")">
+                <i class="foundicon-tools"></i>
+                Logout
+            </a>
+        </li>
+    }
+    else if (Context.User.IsInRole("client"))
+    {
+        <li>
+            <a href="@Url.Action("Main", "Dashboard")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "class=active" : "")>
+                <i class="foundicon-graph"></i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("ExerciseViewer", "Fitness")"
+                 @(ViewContext.RouteData.Values["Controller"].ToString() == "Fitness"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "ExerciseViewer" ? "class=active" : "")>
+                <i class="foundicon-star"></i>
+                Exercises
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyFitnessPlan", "Fitness")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Fitness"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyFitnessPlan" ? "class=active" : "")>
+                <i class="foundicon-heart"></i>
+                Fitness
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyNutritionPlan", "Nutrition")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Nutrition"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyNutritionPlan" ? "class=active" : "")>
+                <i class="foundicon-smiley"></i>
+                Nutrition
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyProfile", "User")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "User"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyProfile" ? "class=active" : "")>
+                <i class="foundicon-settings"></i>
+                Profile
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Logout", "Account")">
+                <i class="foundicon-tools"></i>
+                Logout
+            </a>
+        </li>
+    }
+    else if (Context.User.IsInRole("fuser"))
+    {
+        <li>
+            <a href="@Url.Action("Main", "Dashboard")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "Main" ? "class=active" : "")>
+                <i class="foundicon-graph"></i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyFitnessPlan", "Fitness")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Fitness"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyFitnessPlan" ? "class=active" : "")>
+                <i class="foundicon-heart"></i>
+                Fitness
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyNutritionPlan", "Nutrition")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Nutrition"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyNutritionPlan" ? "class=active" : "")>
+                <i class="foundicon-smiley"></i>
+                Nutrition
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("MyProfile", "User")" 
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "User"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "MyProfile" ? "class=active" : "")>
+                <i class="foundicon-settings"></i>
+                Profile
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Logout", "Account")">
+                <i class="foundicon-tools"></i>
+                Logout
+            </a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("Login", "Account")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Account"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "class=active" : "")>
+                <i class="foundicon-tools"></i>
+                Login
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Register", "Account")"
+                @(ViewContext.RouteData.Values["Controller"].ToString() == "Account"
+                    && ViewContext.RouteData.Values["Action"].ToString() == "Register" ? "class=active" : "")>
+                <i class="foundicon-plus"></i>
+                Register
+            </a>
+        </li>
+    }
+</ul>
